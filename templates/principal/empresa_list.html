@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Datos del Colegio</title>
+</head>
+<body>
+	{% for item in empresas %}
+		<td>
+			<li> {{item.nombre}} </li>
+			<li> {{ item.direccion }}  </li>
+			<li> {{ item.telefono }}</li> 
+			<li> {{ item.rfc }}</li> 
+			<li> {{ item.email }}</li>
+		</td>
+	{% endfor %}
+</body>
+</html>

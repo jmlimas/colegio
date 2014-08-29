@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h3> El Resultado es: </h3>
+	{% for a in alumnos %}
+		<p>Alumno: {{a.nombre}}{{a.apellidos}}</p>
+		<p>Grupo: {{a.grupo}}</p>
+	{% empty %}
+	   <p>No Existe registros  :(</p>
+	{% endfor %}
+
+{% endblock content %}

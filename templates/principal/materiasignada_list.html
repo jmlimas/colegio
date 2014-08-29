@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Lista Materias Asiganadas  por  Grupo</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Materia</th>
+						<th>Nivel</th>
+						<th>Grupo</th>	
+						<th>Editar</th> 					
+						<th>status</th>
+					</tr>
+					{%for a in asignadas%}
+					<tr>
+						<td>
+							{{a.materia}}
+						</td>
+						<td>
+							<small>{{a.nivel}}</small>
+						</td>
+						<td>
+							<small>{{a.grupo}}</small>
+						</td>
+						<td>
+							<a href="/upmatasigandas/{{a.id}}">Edit</a>
+						</td>
+						<td>							
+							{% if a.status %}
+   								Asiganada
+   							{% else %}
+   								No Asignada
+							{% endif %}							
+
+						</td>
+					</tr>
+					{%endfor%}
+				</table>				 
+				<a href="/materiasxgrupo"<button class="btn btn-primary pull-right">Nueva Materia por Grupo</button></a>
+			</div>
+		</div>
+		 {% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+
+	</div>
+{%endblock%}

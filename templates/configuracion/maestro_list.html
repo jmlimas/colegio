@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{%block content%}  
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Listado de Maestros por Nivel Educativos</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Editar</th>
+						<th>Telefono</th>
+						<th>Celular</th>	
+						<th>Email</th>					
+						<th>Niveles</th>
+					</tr>
+					{% for maestro,nivel in maestro_nivel %}
+					<tr>
+						<td>
+							{{maestro.nombre}}
+						</td>						
+						<td>
+							<a href="/updateprofe/{{maestro.id}}">Edit</a>
+						</td>						
+						<td>
+							 {{maestro.telefono}}
+						</td>	
+						<td>
+							 {{maestro.celualr }}
+						</td>
+						<td>
+							{{maestro.email}}
+						</td>	
+							{% for ni in nivel %}
+									<td>{{ni.Nombre}}</td>
+							{% endfor %}						
+					</tr>
+					{%endfor%}
+				</table>
+				<a href="/addprofe"<button class="btn btn-primary pull-right">Nuevo Maestro</button> </a>
+			</div>
+		</div>
+		{% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+	</div>
+{%endblock%}

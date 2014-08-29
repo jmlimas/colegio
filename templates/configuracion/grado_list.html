@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Listado de Grados por Nivel Educativoszazaz</div>
+		<div class="panel-body">
+			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nivel</th>
+						<th>Grado</th>
+						<th>Edit</th>
+						<th>Delete</th>
+						<th>Date added</th>
+						<th>Date modified</th>
+					</tr>
+					{%for a in grados%}
+					<tr>
+						<td>
+							<small>{{a.nivel}}</small>
+						</td>
+						<td>
+							<small>{{a.nombre}}</small>
+						</td>
+						<td>
+							<a href="/updategrado/{{a.id}}">Edit</a>
+						</td>
+						<td>
+							<a href="/delete/{{a.id}}">delete</a>
+						</td>
+						<td>
+							{{a.created|date:"SHORT_DATE_FORMAT"}}
+						</td>
+						<td>
+							{{a.modified|date:"M d, Y"}}
+						</td>
+					</tr>
+					{%endfor%}
+				</table>
+				<a href="/addgrado"<button class="btn btn-primary pull-right">Nuevo Grado</button> </a>
+			</div>
+		</div>
+		{% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+
+	</div>
+
+{%endblock%}

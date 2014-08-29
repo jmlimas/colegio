@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Listado de Niveles Educativos</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						{% for a in niveles%}
+
+						{% endfor %}
+
+					</tr>
+
+					<tr>
+						<th>Pk</th>
+						<th>Nivel</th>
+						<th>Edit</th>
+						<th>Delete</th>
+						<th>Date added</th>
+						<th>Date modified</th>
+					</tr>
+					{%for a in niveles%}
+					<tr>
+						<td>
+							<strong>{{a.id}}</strong>
+						</td>
+						<td>
+							<small>{{a.Nombre}}</small>
+						</td>
+						<td>
+							<a href="/updatenivel/{{a.id}}">Edit</a>
+						</td>
+						<td>
+							<a href="/delete/{{a.id}}">delete</a>
+						</td>
+						<td>
+							{{a.created|date:"SHORT_DATE_FORMAT"}}
+						</td>
+						<td>
+							{{a.modified|date:"M d, Y"}}
+						</td>
+					</tr>
+					{%endfor%}
+				</table>
+				<a href="/addnivel"<button class="btn btn-primary pull-right">Nuevo Nivel</button> </a>
+			</div>
+		</div>
+	</div>
+
+{%endblock%}

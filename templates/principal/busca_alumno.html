@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+
+<!--<form action="/consulta/" method = "GET">
+	<input type="text" name = "consulta" placeholder="Busca alumno..">
+	<input type="submit" value = "Buscar">
+</form>
+<br> -->
+
+<div class="container">
+	<form action="/consulta/" method = "GET">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="busqueda">
+		            <div class="input-group custom-search-form">
+		              <input type="text" name = "consulta" class="form-control" placeholder="busca alumno ">
+		              <span class="input-group-btn">
+		              <button class="btn btn-default" type="submit" value = "Buscar">
+		              <span class="glyphicon glyphicon-search"></span>
+		             </button>
+		             </span>
+		             </div><!-- /input-group -->
+	             </div>
+
+					   
+				 
+	        </div>
+		</div>
+	</form>
+</div>
+<br>
+<div class="panel panel-primary">
+		<div class="panel-heading">Busca Alumnos</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Grupo</th>
+						<th>Edit</th>
+						<th>Delete</th>
+						<th>Date added</th>
+						<th>Date modified</th>						
+					</tr>
+					{%for a in alumnos%}
+					<tr>
+						<td>
+							{{a.nombre}} {{a.apellidos}}
+						</td>
+						<td>
+							<small>{{a.grupo}}</small>
+						</td>
+						<td>
+							<a href="/updatealumno/{{a.id}}">Edit</a>
+						</td>
+						<td>
+							<a href="/delete/{{a.id}}">delete</a>
+						</td>
+						<td>
+							{{a.created|date:"SHORT_DATE_FORMAT"}}
+						</td>
+						<td>
+							{{a.modified|date:"M d, Y"}}
+						</td>
+					</tr>
+					{%endfor%}
+				</table>				 
+				<a href="/addalumno"<button class="btn btn-primary pull-right">Nueva Alumno</button></a>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}

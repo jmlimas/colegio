@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Captura de Asistencias</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+			  <form  method = "POST" class="form-horizontal">{% csrf_token %}
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Asistencia</th>
+						 						
+					</tr>
+					{%for a in asistencia%}
+						<tr>
+							<td>
+								<small>{{a.alumno}}</small>	
+							</td>	
+							<td>	
+	 							<p>
+									{{a.id}}					 
+									<select class="combo" id="id_op" name="op"> 
+							            <option value="A">A</option>
+							            <option value="R">R</option>
+							            <option value="F">F</option>
+							        </select>
+						        </p>
+							</td>		 
+						</tr>
+					{%endfor%}
+				  </table>
+				</form>				 
+				 <div class="panel-footer color-footer">
+                <button type="submit" class="btn btn-primary">
+                     Grabar 
+                </button>
+            </div>
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	
+	 
+
+	<script> 
+		 $('.combo').on('change', listGrupo);
+		function listGrupo(){        
+          $.ajax({
+				data: {'id_op': $(this).val()},
+				type: "GET",				
+				url: '/ajax/asis/',
+				success: function(data) {
+					var html = "";	
+					console.log(data);
+
+					for (var i=0; i < data.length; i++) {
+						html += '<div>'+ data[i].alumno +'  '+
+						data[i].grupo+' '+
+						data[i].email+'</div>'; 
+						}					
+					$('#datos').html(html);
+				}
+			});
+    	}
+	</script>
+
+	
+
+{%endblock%}
+ 

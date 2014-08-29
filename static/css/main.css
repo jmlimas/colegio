@@ -1,0 +1,33 @@
+body
+{
+	background:#FAFCFD;
+	color: BLACK;
+	font-family: "Open Sans",serifa;
+	font-size: 13px;
+	text-align: left;
+	padding-top: 52px;
+}
+ 
+
+ 
+footer.navbar-default.navbar-fixed-bottom
+{
+	background:#403D3D;
+	color:white;
+	padding:.5em 0;
+}
+
+footer.navbar-default.navbar-fixed-bottom p
+{
+      margin:0;
+}
+ 
+.panel-footer{
+	background-color:#D0CDCD !important; 
+}
+
+.busqueda {
+	float: right;
+	margin-top: -5px;
+	margin-bottom: 2px;
+}

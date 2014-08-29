@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{%block content%}  
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Listado de Padres</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Editar</th>
+						<th>Telefono</th>
+						<th>Celular</th>	
+						<th>Email</th>	
+					</tr>
+					{% for item in padres %}
+					<tr>
+						<td>
+							{{item.nombre}}
+						</td>						
+						<td>
+							<a href="/updatepadre/{{item.id}}">Edit</a>
+						</td>						
+						<td>
+							 {{item.telemp}}
+						</td>	
+						<td>
+							 {{item.movil }}
+						</td>
+						<td>
+							{{item.email}}
+						</td>	
+											
+					</tr>
+					{%endfor%}
+				</table>
+				<a href="/addpadre"<button class="btn btn-primary pull-right">Nuevo Padres</button> </a>
+			</div>
+		</div>
+		{% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+	</div>
+{%endblock%}

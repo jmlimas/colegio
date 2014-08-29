@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Lista de Ciclo Escolar</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Mes</th>
+						<th>Servicio</th>
+						<th>Costo</th>
+						<th>Fecha Limite Pago</th>
+						<th>Penaliza</th>
+						<th>Date modified</th>
+					</tr>
+					{%for a in trasporte%}
+					<tr>
+						<td>
+							<small>{{a.mes}}</small>
+						</td>
+						<td>
+							<small>{{a.servicio}}</small>
+						</td>
+						<td>
+							<small>{{a.costo}}</small>
+						</td>
+						<td>
+							<small>{{a.fechalimitepago}}</small>
+						</td>
+						<td>
+							{{a.penaliza}}
+						</td>
+						<td>
+							<a href="/updategrado/{{a.id}}">Edit</a>
+						</td>						 
+					</tr>
+					{%endfor%}
+				</table>				 
+				<a href="/addtransporte"<button class="btn btn-primary pull-right">Nuevo Alumno</button></a>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+

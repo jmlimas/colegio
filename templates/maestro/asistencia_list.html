@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Lista de Faltas</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Convenio</th>
+						<th>Edit</th>								
+					</tr>
+					{%for a in asistencia%}
+					<tr>
+						<td>
+							<small>{{a.alumno.nombre}} {{a.alumno.apellidos}}</small>	
+						</td>	
+						<td>
+							<small>{{a.falta}}</small>
+						</td>
+						<td>
+							<small>{{a.fecha}}</small>
+						</td>							 
+						<td>
+							<a href="/updatebancos/{{a.id}}">Edit</a>
+						</td>						 
+					</tr>
+					{%endfor%}
+				</table>				 
+				<a href="/addasistencia"<button class="btn btn-primary pull-right">Nueva Asistencias</button></a>
+			</div>
+		</div>
+	</div>
+{%endblock%}

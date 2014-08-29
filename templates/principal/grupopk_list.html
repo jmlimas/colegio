@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{%block content%}  
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Listado de Grupos por Nivel Educativoxxxxxs</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nivel</th>
+						<th>Nombre de Grupo</th>
+						<th>Edit</th>						
+						<th>Maximo Alumnos</th>						
+					</tr>
+					{%for a in nivel%}
+					<tr>
+						<td>
+							{{a.nivel}}
+						</td>
+						<td>
+							{{a.nombre}}
+						</td>
+						<td>
+							<a href="/listgrupopk/{{a.id}}">Listar Grupo</a>
+						</td>
+						
+						<td>
+							 <small>{{a.maximo}}</small>
+						</td>						
+					</tr>
+					{%endfor%}
+				</table>
+				<a href="/addgrupo"<button class="btn btn-primary pull-right">Nuevo Grupo</button> </a>
+			</div>
+		</div>
+	</div>
+
+{%endblock%}

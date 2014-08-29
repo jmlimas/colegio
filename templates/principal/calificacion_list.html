@@ -1,0 +1,41 @@
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>listaCalificaciones</title>
+  </head>
+  <body>
+    {% for alumno in alumnos %}
+   <br>
+   <br>
+    <table border="1">
+      <th>{{alumno}}</th>      
+      <tr>
+        {% for mes in meses %}
+          <th>{{ mes }}</th>
+        {% endfor %}
+      </tr>
+      {% for materia in materias %}
+        <tr>
+          <td>{{materia}}</td>                  
+          {% for mes in meses %}
+            {% for calificacion in calificaciones %}
+              {% ifequal calificacion.materia materia  %}
+                {% ifequal calificacion.alumno alumno  %}
+                  {% ifequal calificacion.mes mes  %} 
+                    <td>{{calificacion.calificacion}}</td>
+                  {% else %}
+                    <td></td>
+                  {% endifequal %}
+                {% endifequal %}                
+              {% endifequal %}
+            {% endfor %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+
+    </table>
+   <a href="/addcal"<button class="btn btn-primary pull-right">Nueva Calificacion</button></a>
+    {% endfor %} 
+  </body>
+  </html>

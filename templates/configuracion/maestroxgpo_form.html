@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{%block content%}
+{%load static from staticfiles %}
+<form method="post" class="form-horizontal">
+	{% csrf_token %}	
+	<div class="panel panel-primary">
+		<div class="panel-heading">Asignar Maestro por Grupo</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<div class="form-group">
+							<label for="maestro" class="hidden-xs col-sm-2">Maestro:</label>
+							<div class="col-sm-10">
+								{{form.maestro}}
+								{{form.maestro.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="nivel" class="hidden-xs col-sm-2">Nivel:</label>
+							<div class="col-sm-10">
+								{{form.nivel}}
+								{{form.nivel.error}}
+							</div>
+						</div>	
+						 
+					</div>
+					
+					<div class="col-xs-12 col-sm-6">
+						<div class="form-group">
+							<label for="grupo" class="hidden-xs col-sm-2">Grupo:</label>
+							<div class="col-sm-10">
+								{{form.grupo}}
+								{{form.grupo.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="materia" class="hidden-xs col-sm-2">Materia:</label>
+							<div class="col-sm-10">
+								{{form.materia}}
+								{{form.materia.errors}}
+							</div>
+						</div>							
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer color-footer">
+                <button type="submit" class="btn btn-primary">
+                     Grabar Maestro
+                </button>
+            </div>
+		
+	</div>
+</form> 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	
+	<script>
+		$("#id_maestro").on('change', mostarnivel);
+		function mostarnivel() {
+			 // alert($(this).val());
+			$.ajax({
+				data: {'id_maestro': $(this).val()},
+				type: "GET",
+				url: '/ajax/mostrar-nivel/',
+				success: function(data) {
+					//console.log(data);
+					var options = '<option value="" selected="selected">---------</option>';
+					for (var i=0; i < data.length; i++) {
+						options += '<option value="'+ data[i].pk +'">'+ data[i].fields.Nombre +
+						'</option>';
+					}					
+					$('#id_nivel').html(options);
+				}
+			});
+		}
+	</script>
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	
+	<script>
+		$("#id_nivel").on('change', mostrarGrupo);
+		function mostrarGrupo() {
+			  //alert($(this).val());
+			$.ajax({
+				data: {'id_nivel': $(this).val()},
+				type: "GET",
+				url: '/ajax/mostrar-grupos/',
+				success: function(data) {
+					//console.log(data);
+					var options = '<option value="" selected="selected">---------</option>';
+					for (var i=0; i < data.length; i++) {
+						options += '<option value="'+ data[i].pk +'">'+ data[i].fields.nombre +
+						'</option>';
+					}					
+					$('#id_grupo').html(options);
+				}
+			});
+		}
+	</script>
+
+	<script> 
+		 $("#id_grupo").on('change', listGrupo);
+		function listGrupo(){
+           //alert($(this).val());
+          $.ajax({
+				data: {'id_grupo': $(this).val()},
+				type: "GET",				
+				url: '/ajax/materias-grupos/',
+				success: function(data) {
+					 //console.log(data);
+					var options = '<option value="" selected="selected">---------</option>';
+					for (var i=0; i < data.length; i++) {
+						options += '<option value="'+ data[i].id +'">'+ data[i].materia +
+						'</option>';
+					}					
+					$('#id_materia').html(options);
+				}
+			});
+    	}
+	</script>
+{%endblock%}
+

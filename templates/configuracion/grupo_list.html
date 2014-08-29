@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{%block content%}  
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Grupos por Nivel Educativos 1.1</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<select id="nivel" name="nivel">
+						<option value="" selected="selected">--------</option>
+						{% for x  in niveles %}
+							<option value="{{x.id}}"> {{x.Nombre}} </option>
+						{% endfor %}
+				</select>
+				<br>				
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre de Grupo</th>
+						<th>Edit</th>
+						<th>Ver Alumnos</th>				
+						<th>Maximo Alumnos</th>						
+						<th>No. Alumnos</th>
+						<th>Disponibles</th>
+					</tr>
+					<tbody id="datos">
+						
+					</tbody>
+				</table>
+				<a href="/addgrupo"<button class="btn btn-primary pull-right">Nuevo Grupo</button> </a>
+			</div>
+		</div>
+		{% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>		
+	<script>
+		$("#nivel").on('change', mostrarGrupo);
+		function mostrarGrupo() {
+			//alert($(this).val());
+			$.ajax({
+				data: {'id_nivel': $(this).val()},
+				type: "GET",
+				url: '/ajax/listagpo/',
+				success: function(data){
+					var html="";
+					//console.log(data);	
+					for (var i=0; i < data.length; i++) {
+						html +="<tr><td>"+data[i].nombre +"</td>";						
+						html +="<td>"+ "<a href=/updategrupo/"+data[i].pk+">"+'Edit'+"</a></td>"; 
+						html +="<td>"+ "<a href=/alumnosgrupo/"+data[i].pk+">"+'Lista Alumnos'+"</a></td>"; 
+						html +="<td>"+data[i].maximo+"</td>";
+						html +="<td>"+data[i].numalumnos+"</td>";
+						html +="<td>"+data[i].cupo+"</td></tr>";
+						}					
+					$('#datos').html(html);
+					}						 
+			});
+		}
+	</script>
+
+{%endblock%}
+ 

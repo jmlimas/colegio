@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Lista de Alumnos por Grupo</div>		 
+			<div class="panel-body">			
+				<div class="table-responsive">	 
+				    <label for="id_nivel">Nivel:</label>
+					<select id="id_nivel" name="nivel">
+						<option value="" selected="selected">---------</option>
+						{% for x in niveles %}
+							<option value="{{x.id}}"> {{x.Nombre}} </option>
+						{% endfor %}
+					</select>
+
+							
+				    <label for="id_grupo">Grupos:</label>
+					<select id="id_grupo" name="grupo">
+						<option value="" selected="selected">---------</option>
+					</select>	
+
+			
+				 	<table class="table table-hover table-bordered">
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>	
+							<th>Grupo</th>					
+						</tr>
+						 <tbody id= "alumno">
+						 	
+						 </tbody>	
+						 	
+					</table>	
+					<a href="/addalumno"<button class="btn btn-primary pull-right">Nuevo Alumno</button> </a>		
+				</div>
+			</div>
+		{% if paginator.num_pages > 1 %}
+		    <div class="pager">
+		        <ul>
+		            {% if page_obj.has_previous %}
+		                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+		            {% endif %}
+		            <li><a href="#">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+		            {% if page_obj.has_next %}
+		                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+		            {% endif %}
+		        </ul>
+		    </div>
+    	{% endif %}
+	</div>		
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>	 
+	<script>
+		$("#id_nivel").on('change', mostrarGrupo);
+		function mostrarGrupo() {
+			  //alert($(this).val());
+			$.ajax({
+				data: {'id_nivel': $(this).val()},
+				type: "GET",
+				url: '/ajax/mostrar-grupos/',
+				success: function(data) {
+					//console.log(data);
+					var options = '<option value="" selected="selected">---------</option>';
+					for (var i=0; i < data.length; i++) {
+						options += '<option value="'+ data[i].pk +'">'+ data[i].fields.nombre +
+						'</option>';
+					}					
+					$('#id_grupo').html(options);
+				}
+			});
+		}
+	</script>
+
+	<script> 
+		 $("#id_grupo").on('change', listGrupo);
+		function listGrupo(){
+          //alert($(this).val());
+          $.ajax({
+				data: {'id_grupo': $(this).val()},
+				type: "GET",				
+				url: '/ajax/listgpo/',
+				success: function(data) {
+					var html = "";	
+					//console.log(data);
+					for (var i=0; i < data.length; i++) {
+						html +="<tr><td>"+ data[i].id +"</td>";
+						html +="<td>"+ data[i].alumno +"</td>"; 
+						html +="<td>"+ data[i].grupo +"</td></tr>"; 
+						}					
+					$('#alumno').html(html);
+				}
+			});
+    	}
+	</script>		
+{%endblock%}
+ 

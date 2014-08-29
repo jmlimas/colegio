@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lista Grupos</title>
+</head>
+<body>
+	<h2>Listado de Alumnos por Grupos jm</h2>
+
+	{% for item in gp%}
+		<td>
+			<li><h4>Maximo Alumnos: {{ item.maximo }}</li></h4>
+			<li><h4>Total de Alumnos: {{ item.numalumnos }}</li></h4>
+		</td>		
+	{% endfor %}
+
+
+ 	{% for item in gpo %}
+ 	 	<td>
+			<li> {{item.nombre}} {{item.apellidos}}--{{item.grupo}} </li></a>
+		</td>
+	{% endfor %}
+</body>
+</html>

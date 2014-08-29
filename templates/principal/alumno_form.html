@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{%block content%}		 
+{% load static from staticfiles %}
+
+		 <form class="form-horizontal" method="post">
+            {% csrf_token %}    
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Alumnos</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="nombre" class="hidden-xs col-sm-2">Nombre:</label>
+                                    <div class="col-sm-10">
+                                        {{form.nombre}}
+                                        {{form.nombre.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="apellido" class="hidden-xs col-sm-2">Apellidos:</label>
+                                    <div class="col-sm-10">
+                                        {{form.apellidos}}
+                                        {{form.apellidos.errors}}
+                                    </div>
+                                </div>  
+                                 <div class="form-group">
+                                    <label for="fechanacimiento" class="hidden-xs col-sm-2">Fecha Nacimiento:</label>
+                                    <div class="col-sm-10">
+                                        {{form.fechanacimiento}}
+                                        {{form.fechanacimiento.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="rfc" class="hidden-xs col-sm-2">RFC:</label>
+                                    <div class="col-sm-10">
+                                        {{form.rfc}}
+                                        {{form.rfc.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="curp" class="hidden-xs col-sm-2">Curp:</label>
+                                    <div class="col-sm-10">
+                                        {{form.curp}}
+                                        {{form.curp.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="sexo" class="hidden-xs col-sm-2">Sexo:</label>
+                                    <div class="col-sm-10">
+                                        {{form.sexo}}
+                                        {{form.sexo.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="hermanos" class="hidden-xs col-sm-2">Hermanos:</label>
+                                    <div class="col-sm-10">
+                                        {{form.hermanos}}
+                                        {{form.hermanos.errors}}
+                                    </div>
+                                </div>  
+                                 <div class="form-group">
+                                    <label for="Direccion" class="hidden-xs col-sm-2">Direccion:</label>
+                                    <div class="col-sm-10">
+                                        {{form.direccion}}
+                                        {{form.direccion.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="Colonia" class="hidden-xs col-sm-2">Colonia:</label>
+                                    <div class="col-sm-10">
+                                        {{form.colonia}}
+                                        {{form.colonia.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="Cp" class="hidden-xs col-sm-2">Cp:</label>
+                                    <div class="col-sm-10">
+                                        {{form.cp}}
+                                        {{form.cp.errors}}
+                                    </div>
+                                </div>                                    
+                            </div>
+                    
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="telefono" class="hidden-xs col-sm-2">Telefono:</label>
+                                    <div class="col-sm-10">
+                                        {{form.telefono}}
+                                        {{form.telefono.errors}}
+                                    </div>
+                                </div>      
+                                <div class="form-group">
+                                    <label for="celular" class="hidden-xs col-sm-2">Celular:</label>
+                                    <div class="col-sm-10">
+                                        {{form.celualr}}
+                                        {{form.celualr.errors}}
+                                    </div>
+                                </div>            
+                                <div class="form-group">
+                                    <label for="text" class="hidden-xs col-sm-2">Email:</label>
+                                    <div class="col-sm-10">
+                                        {{form.email}}
+                                        {{form.email.errors}}
+                                    </div>
+                                </div>             
+                                <div class="form-group">
+                                    <label for="ciudad" class="hidden-xs col-sm-2">Ciudad:</label>
+                                    <div class="col-sm-10">
+                                        {{form.ciudad}}
+                                        {{form.ciudad.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="estado" class="hidden-xs col-sm-2">Estado:</label>
+                                    <div class="col-sm-10">
+                                        {{form.estado}}
+                                        {{form.estado.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="nivel" class="hidden-xs col-sm-2">Nivel:</label>
+                                    <div class="col-sm-10">
+                                        {{form.nivel}}
+                                        {{form.nivel.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="grupo" class="hidden-xs col-sm-2">Grupo:</label>
+                                    <div class="col-sm-10">
+                                        {{form.grupo}}
+                                        {{form.grupo.errors}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nivel" class="hidden-xs col-sm-2">Nivel:</label>
+                                    <div class="col-sm-10">
+                                        {{form.nivel}}
+                                        {{form.nivel.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="padre" class="hidden-xs col-sm-2">Padre:</label>
+                                    <div class="col-sm-10">
+                                        {{form.padre}}
+                                        {{form.padre.errors}}
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="contacto" class="hidden-xs col-sm-2">Contacto:</label>
+                                    <div class="col-sm-10">
+                                        {{form.contacto}}
+                                        {{form.contacto.errors}}
+                                    </div>
+                                </div>  
+                                 <div class="form-group">
+                                    <label for="foto" class="hidden-xs col-sm-2">Foto:</label>
+                                    <div class="col-sm-10">
+                                        <img src="/media/{{ alumno.foto }}" width="80px" heigth="80px"/>                                       
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer color-footer">
+                        <button type="submit" class="btn btn-primary">
+                             Grabar
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+{%endblock%}

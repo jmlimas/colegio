@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Lista de Alumno con Transporte</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Alumno</th>
+						<th>Maestro</th>
+						<th>Comentario</th>
+						<th>Fecha</th>		
+					</tr>
+					{%for a in conducta%}
+					<tr>
+						<td>
+							<small>{{a.alumno}}</small>
+						</td>
+						<td>
+							<small>{{a.maestro}}</small>
+						</td>
+						<td>
+							<small>{{a.comentario}}</small>
+						</td>
+						<td>
+							<small>{{a.fecha|date:"d M Y"}}</small>							
+						</td>			
+					</tr>
+					{%endfor%}
+				</table>				 
+				<a href="/addconducta"<button class="btn btn-primary pull-right">Nuevo Alumno con Reporte</button></a>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+

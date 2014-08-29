@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<form action="/listcobros/" method = "POST">{% csrf_token %}
+		<div class="row">
+			<div class="col-lg-3">
+	            <div class="input-group custom-search-form">
+	              <input type="text" name = "consulta" class="form-control" placeholder="busca alumno ">
+	              <span class="input-group-btn">
+	              <button class="btn btn-default" type="submit" value = "Buscar">
+	              <span class="glyphicon glyphicon-search"></span>
+	             </button>
+	             </span>
+	            </div><!-- /input-group -->
+	            <div>
+	            	 <br>
+	                
+                 		<label>Alumno:</label>{{alumno.id}} {{alumno.nombre}} {{alumno.apellidos}} 
+                 		<br>
+                 		<label>Nivel:</label>{{alumno.nivel}}
+                 		<br>
+                 		<label>Grupo:</label>{{alumno.grupo}}  
+                 		<br>
+                 		<label>Beca:</label>{{beca.porcentaje}} 
+                 		<br>
+	            </div>
+	        </div>
+		</div>
+	</form>
+	<br>
+	<br>
+		<div class="panel-heading">Lista de Pagos Pendientes</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+                 	
+					<tr>
+						<th>Nombre</th>
+						<th>Concepto</th>
+						<th>Importe</th>
+						<th>Fecha Limite de Pago</th>
+						<th>Recargo</th>
+						<th>Total a Pagar</th>
+						<th>Edit</th>								
+					</tr>
+					{%for a in cobranza%}
+					<tr>
+						<td>
+							<small>{{a.alumno}}</small>
+						</td>	
+						<td>
+							<small>{{a.concepto}}</small>
+						</td>	
+						<td>
+							<small> {{ a.concepto.importe }} </small>
+						</td>					
+						<td>
+							<small>{{a.concepto.fechaLimitePago|date:"d M Y"}}
+						</td>	
+						<td>
+							<small>{{a.recargo}}</small>
+						</td>
+						<td>
+							<small>{{a.totalapagar}}</small>
+						</td>							
+						<td>
+							<a href="/updatebecaalumnos/{{a.id}}">Edit</a>
+						</td>	
+
+					</tr>
+					{%endfor%}					
+				</table>				 
+				<a href="/addbecaalumno"<button class="btn btn-primary pull-right">Nueva</button></a>
+			</div>
+		</div>
+	</div>
+{%endblock%}

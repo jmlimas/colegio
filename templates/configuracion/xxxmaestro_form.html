@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{%block content%}
+<div class="container">
+<form method="post">
+	{% csrf_token %}
+
+<label for="id_nombre">Nombre:</label>
+<input id="id_nombre" maxlength="200" name="nombre" type="text" value=nombre/>
+<label>Sex:</label>
+<select id="id_sexo" name="sexo">
+<option value="">---------</option>
+<option value="M">Mujer</option>
+<option value="H" selected="selected">Hombre</option>
+</select>
+<label>Fechanacimiento:</label>
+<input id="id_fechanacimiento" name="fechanacimiento" type="text">
+<br>
+
+<label>Email:</label>
+<input id="id_email" maxlength="50" name="email" type="email">
+<label>Rfc:</label>
+<input id="id_rfc" maxlength="15" name="rfc" type="text">
+<label>Curp:</label>
+<input id="id_curp" maxlength="22" name="curp" type="text">
+<br>
+<label>Telefono:</label>
+<input id="id_telefono" maxlength="20" name="telefono" type="text"> 
+<label>Celualr:</label>
+<input id="id_celualr" maxlength="12" name="celualr" type="text">
+<label>Direccion:</label>
+<input id="id_direccion" maxlength="140" name="direccion" type="text">
+<br>
+<label>Colonia:</label>
+<input id="id_colonia" maxlength="80" name="colonia" type="text">
+<label>Cp:</label>
+<input id="id_cp" name="cp" type="number">
+<label>Carrera:</label>
+<input id="id_carrera" maxlength="140" name="carrera" type="text">
+<br>
+<label>Maestria:</label>
+<select id="id_maestria" name="maestria">
+<option value="No">No</option>
+<option value="Si" selected="selected">Si</option>
+</select>
+<label>Doctorado:</label>
+<select id="id_doctorado" name="doctorado">
+<option value="No" selected="selected">No</option>
+<option value="Si">Si</option>
+</select>
+<label>Estadocivil:</label>
+<select id="id_estadocivil" name="estadocivil">
+<option value="Soltero">Soltero</option>
+<option value="Casado" selected="selected">Casado</option>
+<option value="Divorciado">Divorciado</option>
+<option value="Union Libre">Union Libre</option>
+<option value="Separado">Separado</option>
+</select>
+<br>
+<br>
+<label>Nivel:</label>
+<select multiple="multiple" id="id_nivel" name="nivel">
+<option value="1">Guarderia</option>
+<option value="2">Preescolar</option>
+<option value="3" selected="selected">Primaria</option>
+<option value="4" selected="selected">Secundaria</option>
+<option value="5">Prepa</option>
+<option value="6">D</option>
+<option value="7">Prepa Abierta</option>
+</select>
+<span class="helptext">Mantenga presionado "Control", o "Command" en un Mac, para seleccionar más de una opción.</span>
+</p>
+<table>
+	 
+</form>
+</div>
+{%endblock%}

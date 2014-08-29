@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{%block content%}
+{%load static from staticfiles %}
+<form method="post" class="form-horizontal">
+	{% csrf_token %}	
+	<div class="panel panel-primary">
+		<div class="panel-heading">Nuevo Maestro</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<div class="form-group">
+							<label for="nombre" class="hidden-xs col-sm-2">Nombre:</label>
+							<div class="col-sm-10">
+								{{form.nombre}}
+								{{form.nombre.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="sexo" class="hidden-xs col-sm-2">Sexo:</label>
+							<div class="col-sm-10">
+								{{form.sexo}}
+								{{form.sexo.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="fechanacimiento" class="hidden-xs col-sm-2">Fecha Nacimiento:</label>
+							<div class="col-sm-10">
+								{{form.fechanacimiento}}
+								{{form.fechanacimiento.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="text" class="hidden-xs col-sm-2">Email:</label>
+							<div class="col-sm-10">
+								{{form.email}}
+								{{form.email.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="rfc" class="hidden-xs col-sm-2">RFC:</label>
+							<div class="col-sm-10">
+								{{form.rfc}}
+								{{form.rfc.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="curp" class="hidden-xs col-sm-2">Curp:</label>
+							<div class="col-sm-10">
+								{{form.curp}}
+								{{form.curp.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="telefono" class="hidden-xs col-sm-2">Telefono:</label>
+							<div class="col-sm-10">
+								{{form.telefono}}
+								{{form.telefono.errors}}
+							</div>
+						</div>		
+						<div class="form-group">
+							<label for="celular" class="hidden-xs col-sm-2">Celular:</label>
+							<div class="col-sm-10">
+								{{form.celualr}}
+								{{form.celualr.errors}}
+							</div>
+						</div>						
+					</div>
+					
+					<div class="col-xs-12 col-sm-6">
+						<div class="form-group">
+							<label for="Direccion" class="hidden-xs col-sm-2">Direccion:</label>
+							<div class="col-sm-10">
+								{{form.direccion}}
+								{{form.direccion.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="Colonia" class="hidden-xs col-sm-2">Colonia:</label>
+							<div class="col-sm-10">
+								{{form.colonia}}
+								{{form.colonia.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="Cp" class="hidden-xs col-sm-2">Cp:</label>
+							<div class="col-sm-10">
+								{{form.cp}}
+								{{form.cp.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="Carrera" class="hidden-xs col-sm-2">Carrera:</label>
+							<div class="col-sm-10">
+								{{form.carrera}}
+								{{form.carrera.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="Maestria" class="hidden-xs col-sm-2">Maestria:</label>
+							<div class="col-sm-10">
+								{{form.maestria}}
+								{{form.maestria.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="Doctorado" class="hidden-xs col-sm-2">Doctorado:</label>
+							<div class="col-sm-10">
+								{{form.doctorado}}
+								{{form.doctorado.errors}}
+							</div>
+						</div>	
+						<div class="form-group">
+							<label for="estadocivil" class="hidden-xs col-sm-2">Estado Civil:</label>
+							<div class="col-sm-10">
+								{{form.estadocivil}}
+								{{form.estadocivil.errors}}
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="nivel" class="hidden-xs col-sm-2">Nivel:</label>
+							<div class="col-sm-10">
+								{{form.nivel}}
+								{{form.nivel.errors}}
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer color-footer">
+                <button type="submit" class="btn btn-primary">
+                     Grabar Maestro
+                </button>
+            </div>
+		
+	</div>
+</form> 
+{%endblock%}
+

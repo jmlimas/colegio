@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Captura de Asistencias-Alumnos</div>
+		<div class="table-responsive">	
+		<br>				 
+					    <label for="id_nivel">Nivel:</label>
+						<select id="id_nivel" name="nivel">
+							<option value="" selected="selected">---------</option>
+							{% for x in niveles %}
+								<option value="{{x.id}}"> {{x.Nombre}} </option>
+							{% endfor %}
+						</select>
+
+								
+					    <label for="id_grupo">Grupos:</label>
+						<select id="id_grupo" name="grupo">
+						<option value="" selected="selected">---------</option>
+						</select>
+					
+				 <div class="row" id ="datos" >
+				        <div class="col-md-4">
+				          <div class="col-xs-12 col-sm-4 col-md-6- col-lg-8">          
+				                  
+				          </div>
+				        </div>
+				 </div>
+			</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+			  <form  method = "POST" class="form-horizontal">{% csrf_token %}
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Asistencia</th>	
+					</tr>
+					<!-- {% for a in alumnos %} esto lo cargaba desde el  view
+						<tr>
+							<td id="alumno">
+								<small>{{a.nombre}} {{a.apellidos}}</small>	
+							</td>	
+							<td>	
+								<p>												 
+									<select class="combo" id="id_op" name="op"> 
+							            <option value="A" data-id="{{ a.id }}">A</option>
+							            <option value="R" data-id="{{ a.id }}">R</option>
+							            <option value="F" data-id="{{ a.id }}">F</option>
+							        </select>
+							    </p>
+							</td>		 
+						</tr>
+					{% endfor %} -->
+				  </table>
+				</form>				 
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
+	<script> 
+ 	 
+		
+		$("#id_nivel").on('change', mostrarGrupo);
+		function mostrarGrupo() {
+			  //alert($(this).val());
+			$.ajax({
+				data: {'id_nivel': $(this).val()},
+				type: "GET",
+				url: '/ajax/mostrar-grupos/',
+				success: function(data) {
+					//console.log(data);
+					var options = '<option value="" selected="selected">---------</option>';
+					for (var i=0; i < data.length; i++) {
+						options += '<option value="'+ data[i].pk +'">'+ data[i].fields.nombre +
+						'</option>';
+					}					
+					$('#id_grupo').html(options);
+				}
+			});
+		}
+
+		$("#id_grupo").on('change', listGrupo);
+            function listGrupo(){
+                  //alert($(this).val());
+                  $.ajax({
+                data: {'id_grupo': $(this).val()},
+                type: "GET",    
+                url: '/ajax/asisxgrupo/',
+                success: function(data) {
+                var html = "";    
+                //console.log(data); muestra en el navegador F12
+                for (var i=0; i < data.length; i++) {
+                             //html +="<tr><td>"+data[i].fields.nombre+"</td><td>"+data[i].fields.apellidos+"<td><p><select class='combo' id='id_op' name='op'><option value='A' data-id='{{ a.id }}'>A</option><option value='R' data-id='{{ a.id }}'>R</option><option value='F' data-id='{{ a.id }}'>F</option></p></td></tr>";
+			                html +="<tr><td>"+data[i].pk+' '+data[i].fields.nombre+' '+data[i].fields.apellidos+"<td><p><select class='combo' id='id_op' name='op'><option value='A' data-id='"+ data[i].pk +"'>A</option><option value='R' data-id='"+  data[i].pk + "'>R</option><option value='F' data-id='"+ data[i].pk + "'>F</option></p></select></td></tr>";
+                }    
+                //$('#alumno').html(html);
+                //$('.table').append(html); este lo pone abajo  y no borra la tabla si escojo otro grubo del combo        
+                $('.table').html(html);
+
+                
+                 $('.combo').on('change', listGrupo2); // este codigo entro aquie por q q primero se cargan los combos del html y  inmediatemente  esta funcion.                            
+                      function listGrupo2(){  
+                        //alert($(this).val());
+                        var id_alumno = $(this).find(':selected').data('id');
+                        var id_op = this.value;
+                          //console.log(id_alumno); esto se en el google f12
+                          //console.log(id_op);  esto se en el google f12 
+                          $.ajax({ 
+                                data: {'id_op': id_op, 'id_alumno': id_alumno},
+                                type: "GET",                
+                                url: '/ajax/asis/',
+                                success: function(data) {
+                                    var html = "";    
+                                    console.log(data);    
+                                }
+                            });
+                        }
+                        }
+                        });
+            }
+	
+		 
+	</script>
+{%endblock%}
+ 

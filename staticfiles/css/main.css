@@ -1,0 +1,14 @@
+body
+{
+	background:#CCCCCC;	
+	font-family: "Open Sans",serifa;
+	font-size: 9px;
+	text-align: left;
+	padding-top: 300px;
+}
+ 
+.busqueda {
+  float: right;
+  margin-top: -3px;
+  margin-bottom: 2px;
+}
