@@ -130,10 +130,6 @@ class ListGpoDetailView(TemplateView):
 		return context
 
 
-class ListGpoDetailView2(TemplateView):
-	pass
-
-
 class UpdateGrupo(LoginRequiredMixin, UpdateView):
 	form_class = AddGrupoForm
 	model = Grupo
@@ -189,6 +185,15 @@ class AddMstroxGpo(LoginRequiredMixin,CreateView):
 	form_class = MaestroxGpoForm
 	success_url = '/listmatxgpos'
 
+class UpMaestroxGpo(UpdateView):
+	model = MaestroxGpo
+	form_class = MaestroxGpoForm
+
+	def get_success_url(self):
+		return reverse('principal:lista_matxgpo')
+
+
+
 
 def mostrarnivel(request):
 	if request.is_ajax():		
@@ -237,3 +242,14 @@ class UpdateSecc(UpdateView):
 
 	def get_success_url(self):
 		return reverse('configuracion:list_seccion') 
+
+class MaestroxGrupoDetailView(ListView):
+	model = MaestroxGpo
+	template_name = 'configuracion/maestroxgpo_list.html'
+	def get_context_data(self, **kwargs):
+		context = super(MaestroxGrupoDetailView,self).get_context_data(**kwargs)
+		context['profe'] = MaestroxGpo.objects.filter(maestro=self.kwargs['pk'])
+		print context
+		return context
+
+ 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {%block content%}
 	<div class="panel panel-primary">
-		<div class="panel-heading">Listar Materias por Grupo ff</div>
+		<div class="panel-heading">Listar Maestros Asignados por Grupo</div>
 		<div class="panel-body">			
 			<div class="table-responsive">
 				<label for="id_nivel">Nivel:</label>
@@ -75,7 +75,7 @@
 						html +="<td>"+data[i].maestro+"</td>";
 						html +="<td>"+data[i].nivel+"</td>";
 						html +="<td>"+data[i].grupo+"</td>";
-						html +="<td>"+ "<a href=/updatemat/"+data[i].pk+">"+'Edit'+"</a></td></tr>"; 
+						html +="<td>"+ "<a href=/upmstroxgpo/"+data[i].id+">"+'Edit'+"</a></td></tr>"; 
 					}					
 					$('#datos').html(html);
 				}

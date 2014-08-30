@@ -1,46 +1,34 @@
 {% extends "base.html" %}
 {%block content%}  
 	<div class="panel panel-primary">
-	  <div class="panel-heading">Listado de Maestros por Nivel Educativos</div>
+	  <div class="panel-heading">Maestros y sus  Grupos</div>
 		<div class="panel-body">			
 			<div class="table-responsive">
 				<table class="table table-hover table-bordered">
 					<tr>
-						<th>Nombre</th>
-						<th>Editar</th>
-						<th>Grupos</th>
-						<th>Telefono</th>
-						<th>Celular</th>	
-						<th>Email</th>					
-						<th>Niveles</th>
+						<th>Maestro</th>
+						<th>Nivel</th>
+						<th>Materia</th>
+						<th>Grupo</th>						 
 					</tr>
-					{% for maestro,nivel in maestro_nivel %}
+					{% for x in profe %}
 					<tr>
 						<td>
-							{{maestro.nombre}}
-						</td>						
-						<td>
-							<a href="/updateprofe/{{maestro.id}}">Edit</a>
-						</td>	
-						<td>
-							<a href="/detmaestroxgpo/{{maestro.id}}">Grupos</a>
-						</td>					
-						<td>
-							 {{maestro.telefono}}
-						</td>	
-						<td>
-							 {{maestro.celualr }}
+							{{x.maestro}}
 						</td>
 						<td>
-							{{maestro.email}}
+							{{x.nivel}}
+						</td>													
+						<td>
+							 {{x.materia}}
 						</td>	
-							{% for ni in nivel %}
-									<td>{{ni.Nombre}}</td>
-							{% endfor %}						
+						<td>
+							 {{x.grupo }}
+						</td>						 					
 					</tr>
 					{%endfor%}
 				</table>
-				<a href="/addprofe"<button class="btn btn-primary pull-right">Nuevo Maestro</button> </a>
+				 
 			</div>
 		</div>
 		{% if paginator.num_pages > 1 %}
@@ -58,3 +46,8 @@
     	{% endif %}
 	</div>
 {%endblock%}
+
+
+
+
+ 

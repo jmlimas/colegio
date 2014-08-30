@@ -2,8 +2,8 @@ from django.conf.urls import patterns, url
 from .views import AddNivelCreateView,ListaNivel,NivelUpdate,AddGradoCreateView
 from .views import ListGrados,UpdateGrado,AddGrupoCreateView,ListGpos,ListGpoDetailView
 from .views import UpdateGrupo,AddProfeCreateView,ListProfe,UpdateProfe,AddPadre
-from .views import AddMstroxGpo,ListPadre,UpdatePadre,AddSeccion
-from .views import ListSecc,UpdateSecc,AlumnosGpoListView
+from .views import AddMstroxGpo,ListPadre,UpdatePadre,AddSeccion,UpMaestroxGpo
+from .views import ListSecc,UpdateSecc,AlumnosGpoListView,MaestroxGrupoDetailView
 
 
 
@@ -23,6 +23,7 @@ urlpatterns = patterns('apps.configuracion.views',
     url(r'^updateprofe/(?P<pk>\d+)/$',UpdateProfe.as_view(),name='update_profe'),
     url(r'^addpadre/$',AddPadre.as_view(),name = 'add_padre'),
     url(r'^addmstroxgpo/$',AddMstroxGpo.as_view(),name='add_maestrpxgpo'),
+    url(r'^upmstroxgpo/(?P<pk>\d+)/$',UpMaestroxGpo.as_view(),name='up_maestrxgpo'),
    # url(r'^listmstroxgpo/$',Listmstroxgpo.as_view(),name = 'list_mastroxgpo'),
     url(r'^ajax/mostrar-nivel/$', "mostrarnivel"),
     url(r'^listpadre/$',ListPadre.as_view(),name='list_padre'),
@@ -32,5 +33,6 @@ urlpatterns = patterns('apps.configuracion.views',
     url(r'^updatesecc/(?P<pk>\d+)/$', UpdateSecc.as_view(), name='nivel_update'),
     url(r'^alumnosgrupo/(?P<id>\d+)/$', AlumnosGpoListView.as_view(), name='alumnosgpo_listview'),
     url(r'^ajax/listagpo/$',"Lista_GruposAjax"),
+    url(r'^detmaestroxgpo/(?P<pk>\d+)/$', MaestroxGrupoDetailView.as_view(),name='det_maestroxgpo'),
     #url(r'^alumnosgrupo/(?P<id>\d+)/$',"AlumnosGpo", name='alumnosgpo_listview'), la url de arriba es la  mismo que esta  esta es para un funcion de ejemplo 
 )   
