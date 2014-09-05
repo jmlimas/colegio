@@ -25,7 +25,7 @@ class Alumno(TimeStampModel):
 	#matricula = models.CharField(max_length=6)
 	nombre = models.CharField(max_length=50)
 	apellidos = models.CharField(max_length=120)
-	foto 	  = models.ImageField(upload_to='alumno/',null=True,blank=True, verbose_name='Fotos')
+	foto 	  = models.ImageField(upload_to='alumno',null=True,blank=True)
 	fechanacimiento = models.DateField()
 	rfc = models.CharField(max_length=15,null=True)
   	curp = models.CharField(max_length=22,null=True)

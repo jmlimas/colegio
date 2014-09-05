@@ -13,5 +13,5 @@ urlpatterns = patterns('apps.finanzas.views',
     url(r'^addbecaalumno/$',AddBecaAlumno.as_view(),name='add_becaalumnos'),
     url(r'^listbecaalumnos/$',ListBecaAlumno.as_view(),name = 'list_becaalumno'),
     url(r'^updatebecaalumnos/(?P<pk>\d+)/$',UpdateBeca.as_view(),name = 'beca_update'),
-    url(r'^listcobros/$',ListCobranza.as_view(),name = 'list_cobros'),
+    url(r'^listcobros/$',ListCobranza.as_view(),name = 'list_cobros'),   
 )

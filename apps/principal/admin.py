@@ -3,8 +3,11 @@ from django.contrib import admin
 from .models import Empresa,Alumno,Mes,Materia,Calificacion,MateriaxGrupo,Cicloescolar
 
 class MateriaxGrupoAdmin(admin.ModelAdmin):
-	list_display = ('nivel','materia','grupo')
-	list_filter = ('nivel','materia','grupo')
+	list_display = ('id','nivel','materia','grupo','status',)
+	list_filter = ('nivel','materia','grupo','status',)
+	search_fields = ('materia__materia',)
+	list_editable = ('nivel','materia','grupo','status',)
+	raw_id_fields = ('materia','grupo',)
 
 class MateriaAdmin(admin.ModelAdmin):
 	list_display =('materia','nivel','grado',)

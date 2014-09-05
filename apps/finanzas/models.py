@@ -58,6 +58,8 @@ class Cobranza(TimeStampModel):
 		ctalmno = "%s" % (self.alumno) 
 		return ctalmno
 
+	class Meta:
+		ordering = ["totalapagar"]
 
 	
 

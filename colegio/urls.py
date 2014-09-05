@@ -18,6 +18,6 @@ urlpatterns = patterns('',
     url(r'^', include('apps.maestro.urls',namespace='maestro')),
     url(r'^', include('apps.trasporte.urls',namespace='trasporte')),
 	url(r'^$',IndexView.as_view(),name = 'index'),
-	url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
+	url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT,}),
 	
  )
