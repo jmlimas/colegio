@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from .views import AddAsistenciasView,ListaAsistencia,ListaCalificaciones,AddCalCreateView
 
-urlpatterns = patterns('apps.maestro.views',
+urlpatterns = patterns('',
 	url(r'^addasistenciax/$', AddAsistenciasView.as_view(),name = 'add_asistencias'),  
 	url(r'^listasistencia/$',ListaAsistencia.as_view(),name = 'list_asistencias'), 
 	url(r'^addasistencia/$','asistencias'),

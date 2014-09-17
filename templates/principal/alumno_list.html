@@ -9,9 +9,8 @@
 						<th>Nombre</th>
 						<th>Grupo</th>
 						<th>Edit</th>
-						<th>Delete</th>
-						<th>Date added</th>
-						<th>Date modified</th>						
+						<th>Foto</th>
+						<th>Date added</th>											
 					</tr>
 					{%for a in alumnos%}
 					<tr>
@@ -25,9 +24,8 @@
 							<a href="/updatealumno/{{a.id}}">Edit</a>
 						</td>
 						<td>
-							<a href="/delete/{{a.id}}">delete</a>
-						</td>
-						 
+							 <img src="{{MEDIA_URL}}{{a.foto}}" height="60" width="100">
+						</td>						 
 						<td>
 							{{a.modified|date:"M d, Y"}}
 						</td>

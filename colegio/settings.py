@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'apps.finanzas',
     'apps.maestro',
     'apps.trasporte',
+    'djrill',    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,9 +100,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 TEMPLATE_DIRS = [BASE_DIR.child('templates')]
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
-
+ 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = 'http://localhost:8000/media/'
+
+
 STATIC_ROOT = 'staticfiles'             
 
+EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
+MANDRILL_API_KEY ='WeikEnaOZGN5itibGAs_0g'
  

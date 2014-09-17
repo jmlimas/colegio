@@ -38,7 +38,7 @@
 						<th>Seleccionar</th>								
 					</tr>
 					{%for a in cobranza%}
-					<tr>
+					<tr class="item">
 						<td>
 							<small>{{a.alumno}}</small>
 						</td>	
@@ -54,11 +54,11 @@
 						<td>
 							<small>{{a.recargo}}</small>
 						</td>
-						<td class="pago">
+						<td id="pago">
 							<small>{{a.totalapagar}}</small>
 						</td>
 						 <td>
-						   <input type="checkbox" class = "chcktbl" value="{{a.id}}" rel="{{ a.totalapagar }}">
+						<input type="checkbox" class = "chcktbl" value="{{a.id}}" rel="{{a.totalapagar}}">
 						</td>					           
 					</tr>
 					 
@@ -69,7 +69,7 @@
 					<p>Monto Total a Pagar:</p><p id="out"></p>			 
 					</h4>
 				</div>
-				<button  id="test" class="btn btn-primary pull-right" data-toggle="modal" data-target="#miModal">Pagar</button>
+				<button  id="test" class="btn btn-primary pull-right" data-toggle="modal" data-target="#miModalx">Pagar</button>
 
 			</div>
 		</div>
@@ -86,25 +86,72 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn btn-primary">Aceptar</button> <button class="btn btn-default" data-dismiss="modal">Cancelar</button>                           
+                            <button class="btn btn-primary">Aceptar</button> <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
-
                     </div>
                 </div>
         </div>
 	</div>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>	 
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
 	<script>
-		 $('.chcktbl').click(function(){
-		    //alert($(this).val()); // el id  del la  tabla de cobros
-		  recalculate();		  	 	 	  	 
-				 //if($('.chcktbl').is(':checked')){
-				 //	  alert("lo puso");
-				//	}
-				//else {
-				//		    alert("lo quito");
-				//		}
-				});
+		 
+	$('#test').on('click', function() {
+		$("input:checkbox:checked").each(function(){
+			//quantity2 = $(this).find("input.chcktbl").val();
+		    //console.log(quantity2);
+			alert($(this).val());
+			$.ajax({
+				data: {'id': $(this).val()},
+				type: "GET",
+				url: '/ajax/pago-emergente/',
+				success: function(data) {
+					var html = "";	
+					//console.log(data);
+					for (var i=0; i < data.length; i++) {
+						html +="<tr><td>"+data[i].materia +"</td>";
+						html +="<td>"+data[i].maestro+"</td>";
+						html +="<td>"+data[i].nivel+"</td>";
+						html +="<td>"+data[i].grupo+"</td>";
+						html +="<td>"+ "<a href=/upmstroxgpo/"+data[i].id+">"+'Edit'+"</a></td></tr>"; 
+					}					
+					$('#datos').html(html);
+
+
+			});
+		}); 
+	});
+	</script> 
+
+	<script>
+		//$('.chcktbl').on('change', registra_pago);                        
+		$('.chcktblxx').on('change', registra_pago);                        
+		function registra_pago(){  
+		//alert($(this).val());		
+	    //pago = $(this).find('input:selected').attr('rel');
+		//alert($(this).find('input:selected').attr('rel'));
+		var id_  = this.value;
+		console.log(id_);
+		$.ajax({ 
+		        data: {'id_': $(this).val()},
+		        type: "GET",                
+		        url: '/ajax/reg_pago/',		             
+		        success: function(data){
+		            var html = "";    
+		            console.log(data);    
+		        }
+		    });
+		}
+ 
+		$('.chcktbl').click(function(){
+		//alert($(this).val()); // el id  del la  tabla de cobros
+		recalculate();		  	 	 	  	 
+			 //if($('.chcktbl').is(':checked')){
+			 //	  alert("lo puso");
+			//	}
+			//else {
+			//		    alert("lo quito");
+			//		}
+			});
 
 
 		 function recalculate(){

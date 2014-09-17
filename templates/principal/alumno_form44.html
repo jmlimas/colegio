@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{%block content%}		 
+{% load static from staticfiles %}
+
+		 <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            {% csrf_token %}    
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Alumnos</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    {{form.as_p}}
+                                </div>
+                            </div>  
+                        </div>
+
+                    </div>
+                    <div class="panel-footer color-footer">
+                        <button type="submit" class="btn btn-primary">
+                             Grabar
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+{%endblock%}

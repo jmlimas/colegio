@@ -51,7 +51,7 @@ class Cobranza(TimeStampModel):
 	numCorte = models.IntegerField(null=True,blank=True)	
 	totalapagar = models.DecimalField(max_digits=8,decimal_places=2,default=0)
 	fechaCorte = models.DateField(null=True,blank=True)
-	fechapago = models.DateField(null=True,blank=True)
+	fechapago = models.DateTimeField(null=True,blank=True)
 	pagado = models.BooleanField(default=False)
 
 	def __unicode__(self):

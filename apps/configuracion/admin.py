@@ -24,3 +24,4 @@ admin.site.register(Maestro,MaestroAdmin)
 admin.site.register(Padre)
 admin.site.register(Seccion)
 admin.site.register(MaestroxGpo,MaestroxGpoAdmin)
+ 

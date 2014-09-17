@@ -106,25 +106,30 @@ class AddAlumnoCreateView(LoginRequiredMixin,CreateView):
 		conceptos = ConceptoCobro.objects.filter(nivel = alumno.nivel)
 		for item in conceptos:
 			cobranza = Cobranza(alumno=alumno,concepto=item)
- 			cobranza.save()
- 
+ 			cobranza.save() 
 
-
+ 	
 class UpdateAlumno(LoginRequiredMixin,UpdateView):
 	form_class = AddAlumnoForm
-	model = Alumno 
+	model = Alumno 		
 
 	def form_valid(self,form):			
 		form.instance.user = self.request.user
 		return super(UpdateAlumno, self).form_valid(form)
 
-	def form_invalid(self,form):	
+	def form_invalid(self,form):
 		return super(UpdateAlumno, self).form_invalid(form)
 	
 	def get_success_url(self):	
 		return reverse('principal:lista_alumnosall')
-
-
+	 
+	def get_context_data(self, **kwargs): #para saber si  ya  existe el alumo para la foto
+		context = super(UpdateAlumno, self).get_context_data(**kwargs)
+		#context['foto'] = kwargs={'pk': self.get_object().id}
+		#context['foto'] = Alumno.objects.get(pk=self.kwargs['pk'])	
+		context['foto'] = context['object'].foto # 3 maneras de hacer si  hay foto o alumno		 
+		return context
+ 	
 
 class InibuscalumnoView(TemplateView):
 	template_name = 'principal/busca_alumno.html'

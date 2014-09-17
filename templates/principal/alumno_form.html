@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {%block content%}		 
 {% load static from staticfiles %}
-
-		 <form class="form-horizontal" method="post">
+		 <form class="form-horizontal" method="post" enctype="multipart/form-data">
             {% csrf_token %}    
                 <div class="panel panel-primary">
                     <div class="panel-heading">Alumnos</div>
@@ -147,15 +146,18 @@
                                 </div>  
                                  <div class="form-group">
                                     <label for="foto" class="hidden-xs col-sm-2">Foto:</label>
-                                    <div class="col-sm-10">
-                                        <img src="/media/{{ form.foto.url }}" width="80px" heigth="80px"/> 
-                                        {{form.foto.url}}   
-
+                                    <div class="col-sm-10">              
+                                    {% if foto %}
+                                         <img src="{{MEDIA_URL}}{{foto}}" height="60" width="100">
+                                         {{form.foto}}             
+                                    {% else %}   
+                                        <input type="file" name="foto">
+                                    {% endif %}
+                                        
                                     </div>
                                 </div>    
                             </div>
-                        </div>
-
+                        </div>                         
                     </div>
                     <div class="panel-footer color-footer">
                         <button type="submit" class="btn btn-primary">

@@ -17,7 +17,10 @@ class BecaAlumnoAdmin(admin.ModelAdmin):
 	list_filter = ('alumno','porcentaje',) 
 
 class CobranzaAdmin(admin.ModelAdmin):
-	list_display = ('alumno','concepto',)
+	list_display = ('alumno','concepto','pagado')
+	list_filter = ('alumno','pagado',)
+
+
 
  
 

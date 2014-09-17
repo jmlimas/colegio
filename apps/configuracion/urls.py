@@ -7,7 +7,7 @@ from .views import ListSecc,UpdateSecc,AlumnosGpoListView,MaestroxGrupoDetailVie
 
 
 
-urlpatterns = patterns('apps.configuracion.views',
+urlpatterns = patterns('',
 	url(r'^addnivel/$', AddNivelCreateView.as_view(),name = 'add_nivel'),  
 	url(r'^listnivel/$',ListaNivel.as_view(),name = 'list_nivel'),
     url(r'^updatenivel/(?P<pk>\d+)/$', NivelUpdate.as_view(), name='nivel_update'),

@@ -1,14 +1,14 @@
 from django.conf.urls import patterns, url 
 from .views import Cerrar,UsuarioDetailView,MyLogin,AddEmpresa,ListaEmpresa
 from .views import AddCiclo,ListCiclo,UpdateCiclo,AddAlumnoCreateView
-from .views import ListAlumnos,UpdateAlumno,consulta,InibuscalumnoView,AddMateriaCreateView
+from .views import ListAlumnos,UpdateAlumno,consulta,InibuscalumnoView,AddMateriaCreateView,IndexView 
 from .views import ListMateriaView,UpdateMat,ListGpopk,ListMatxGpoNivel,addMatxGpo,ListAlumnoxgrupo,ListMatAsignada,UpdateMatxGpo
 from django.contrib.auth.decorators import login_required
  
 
-
-urlpatterns = patterns('apps.principal.views',
-	 
+#urlpatterns = patterns('apps.principal.views',
+urlpatterns = patterns('',
+	url(r'^$',IndexView.as_view(),name = 'index'),	  
 	url(r'^my_login/$',MyLogin.as_view(),name='my_login'),
 	url(r'^cerrar/$',login_required(Cerrar.as_view()),name='cerrar'),
 	url(r'^user/(?P<pk>\d+)/$', UsuarioDetailView.as_view(), name='detalle_usuario'),
