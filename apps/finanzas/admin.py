@@ -6,7 +6,7 @@ from views import ConceptoCobro,Banco,BecaAlumno,Cobranza
 
 class ConceptoCobroAdmin(admin.ModelAdmin):
 	list_display = ('nombre','nivel','importe','fechaLimitePago','penaliza')
-	list_filter = ('nombre','nivel')
+	list_filter = ('nombre','nivel',)
 
 class BancoAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
@@ -18,7 +18,7 @@ class BecaAlumnoAdmin(admin.ModelAdmin):
 
 class CobranzaAdmin(admin.ModelAdmin):
 	list_display = ('alumno','concepto','pagado')
-	list_filter = ('alumno','pagado',)
+	list_filter = ('alumno','concepto','pagado',)
 
 
 

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{%block content%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Alumnos con pagos atrasados</div>
+		<div class="panel-body">			
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre</th>
+						<th>Concepoto</th>
+						<th>Fecha Pago</th>
+						<th>Importe</th>								
+					</tr>
+					{%for a in pagos%}
+					<tr>
+						<td>
+							<small>{{a.alumno.nombre}} {{a.alumno.apellidos}}</small>
+						</td>	
+						<td>
+							<small>{{a.concepto.nombre}}</small>
+						</td>						 
+						<td>
+							<small>{{a.concepto.fechaLimitePago}}</small>
+						</td>	
+						<td>
+							<small>{{a.concepto.importe}}</small>
+						</td>					 
+					</tr>
+					{%endfor%}
+				</table>	
+			</div>
+		</div>
+	</div>
+{%endblock%}

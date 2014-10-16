@@ -7,22 +7,9 @@
 	text-align: left;
 	padding-top: 52px;
 }
- 
 
- 
-footer.navbar-default.navbar-fixed-bottom
-{
-	background:#403D3D;
-	color:white;
-	padding:.5em 0;
+.busqueda {
+	float: right;
+	margin-top: -3px;
+	margin-bottom: 2px;
 }
-
-footer.navbar-default.navbar-fixed-bottom p
-{
-      margin:0;
-}
- 
-.panel-footer{
-	background-color:#D0CDCD !important; 
-}
-

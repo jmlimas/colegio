@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from .views import AddConcepto,ListConceptos,UpdateConceptos,AddBancos
 from .views import ListBancos,UpdateBancos,AddBecaAlumno,ListBecaAlumno
-from .views import UpdateBeca,ListCobranza
+from .views import UpdateBeca,ListCobranza,ListPagoAtrasado
 
 urlpatterns = patterns('apps.finanzas.views',
 	url(r'^addconcepto/$', AddConcepto.as_view(),name = 'add_concepto'),  
@@ -15,5 +15,6 @@ urlpatterns = patterns('apps.finanzas.views',
     url(r'^updatebecaalumnos/(?P<pk>\d+)/$',UpdateBeca.as_view(),name = 'beca_update'),
     url(r'^listcobros/$',ListCobranza.as_view(),name = 'list_cobros'), 
     url(r'^ajax/reg_pago/$',"ajax_RegistraPago"),
-    
+    url(r'^pagoatrasado/$',ListPagoAtrasado.as_view(),name='list_pagoatrasado'),
+                             
 )

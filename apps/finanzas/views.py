@@ -112,8 +112,7 @@ class ListCobranza(TemplateView):
 			except Alumno.DoesNotExist:
 				return render(request,'finanzas/cobranza_list.html') 
 
-def ajax_RegistraPago(request):
-	print 'mem'		 
+def ajax_RegistraPago(request):	
 	if request.is_ajax():	
 		cob = Cobranza()
 		cob = Cobranza.objects.get(id = request.GET['id_'])
@@ -128,7 +127,6 @@ def ajax_RegistraPago(request):
 	    #print alumnos_json
 		return HttpResponse(cobranza_json,content_type='application/json');
 	else:
-		print 'mem'	
 		raise Http404
 		
 
@@ -147,7 +145,6 @@ def send_email(request):
 	msg.template_content = {
 		'std_content00' :'<H3><b>Gracias  por  realizar su pago :</h3></b><br><b>Del Mes:</b> %s <br><b>Sr.: </b> %s<br><b>Importe de su Pago:</b> %s'%(cobro.concepto, nombre_padre,cobro.totalapagar)
 	}
-	print msg
 	msg.send()
 # html_contenido = "<p>Sus credenciales de acceso al Sistema de Gestion Academica son: </p><br><br><b>Usuario: </b> %s <br><br><b>Password: </b> %s"%(usur2.username ,mi_clave)
 #'std_content00' : '<h1> Gracias por su pago de %s, %s  </h1>' % (cobro.concepto, nombre_padre)		
@@ -161,3 +158,16 @@ def mostrar_alumnos22(request):
 		return HttpResponse(alumnos_json, content_type='application/json');
 	else:
 		raise Http404
+
+class ListPagoAtrasado(ListView):	
+	today = date.today()
+	context_object_name = 'pagos'
+	template_name = 'finanzas/pagos_atrasados.html'
+	queryset = Cobranza.objects.filter(pagado=False, concepto__fechaLimitePago__lte=today)
+
+	def get_context_data(self, **kwargs):
+		today = date.today()
+		context = super(ListPagoAtrasado,self).get_context_data(**kwargs)
+		context['total'] = Cobranza.objects.filter(pagado=False, concepto__fechaLimitePago__lte=today)
+		print context
+		return context

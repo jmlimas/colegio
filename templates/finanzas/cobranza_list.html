@@ -38,7 +38,7 @@
 						<th>Seleccionar</th>								
 					</tr>
 					{%for a in cobranza%}
-					<tr class="item">
+					<tr class="item" id="{{a.id}}">
 						<td>
 							<small>{{a.alumno}}</small>
 						</td>	
@@ -69,7 +69,7 @@
 					<p>Monto Total a Pagar:</p><p id="out"></p>			 
 					</h4>
 				</div>
-				<button  id="test" class="btn btn-primary pull-right" data-toggle="modal" data-target="#miModalx">Pagar</button>
+				<button  id="test" class="btn btn-primary pull-right" data-toggle="modal" data-target="#miModal">Pagar</button>
 
 			</div>
 		</div>
@@ -81,78 +81,91 @@
                             <h4 class="modal-title">Pago de Colegiatura</h4>
                         </div>
 
-                        <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus sequi saepe temporibus, nobis quidem eum, sed architecto ducimus distinctio doloribus labore ullam porro rem veritatis enim eaque fuga similique ipsum!
+                        <div class="modal-body" id="apagar">
+                        	<table id="tpago" class="table table-hover table-bordered">
+								<tr>
+									<th>Id</th>
+									<th>Concepto</th>
+									<th>Fecha Vencimiento</th>
+									<th>Total</th>
+								</tr>
+								<tbody id="datos">
+									
+								</tbody>
+							</table>
+                        	 <div id="totalapagar">                        	 	 
+                        	 	
+                        	 	 
+                        	 </div>
+                        	 <br>
+                        	 <div id="tipopago">
+								<fieldset>
+								 <p>Tipo de Tapo:</p>
+									<input type="radio" name="pago" value="efe" />Efectivo<br />
+									<input type="radio" name="pago" value="tar" />Tarjeta de Credito<br />	
+								</fieldset>
+                        	 </div>
                         </div>
 
+
                         <div class="modal-footer">
-                            <button class="btn btn-primary">Aceptar</button> <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button id="cobro" class="btn btn-primary">Aceptar</button> <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>
         </div>
 	</div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
-	<script>
-		 
-	$('#test').on('click', function() {
-		$("input:checkbox:checked").each(function(){
-			//quantity2 = $(this).find("input.chcktbl").val();
-		    //console.log(quantity2);
-			alert($(this).val());
-			$.ajax({
-				data: {'id': $(this).val()},
-				type: "GET",
-				url: '/ajax/pago-emergente/',
-				success: function(data) {
-					var html = "";	
-					//console.log(data);
-					for (var i=0; i < data.length; i++) {
-						html +="<tr><td>"+data[i].materia +"</td>";
-						html +="<td>"+data[i].maestro+"</td>";
-						html +="<td>"+data[i].nivel+"</td>";
-						html +="<td>"+data[i].grupo+"</td>";
-						html +="<td>"+ "<a href=/upmstroxgpo/"+data[i].id+">"+'Edit'+"</a></td></tr>"; 
-					}					
-					$('#datos').html(html);
-
-
-			});
-		}); 
-	});
+	<script> 		 
+		$('#test').on('click', function() {
+			var html = "";
+			var htotalpago = "";
+			$("input:checkbox:checked").each(function(){
+				 var ida = $(this).val();
+				 var eq1 = $('#'+ida+'>td').eq(1).text();
+				 var eq2 = $('#'+ida+'>td').eq(3).text();
+				 var eq3 = $('#'+ida+'>td').eq(5).text();
+				 var monto = $('#out').text();
+				 htotalpago +="<h4> Total a Pagar $: "+ monto + "</h4>"; 
+				 //$('.totalapagar').text(monto);			 
+					html +="<tr><td id='Id'>"+ ida +"</td>";
+					html +="<td>"+ eq1 +"</td>";
+					html +="<td>"+ eq2 +"</td>";
+					html +="<td>"+ eq3 +"</td></tr>";
+				 //$('#apagar').append('item: '+ eq1+ ','+ eq2 + ','+eq3);
+				 $('#datos').html(html);
+			});   
+			 $('#totalapagar').html(htotalpago);
+		});
 	</script> 
+		
+	<script> 
+		
+		$( "#cobro2" ).click(function() {
+		alert($(this).val());
+		});
 
-	<script>
-		//$('.chcktbl').on('change', registra_pago);                        
-		$('.chcktblxx').on('change', registra_pago);                        
-		function registra_pago(){  
-		//alert($(this).val());		
-	    //pago = $(this).find('input:selected').attr('rel');
-		//alert($(this).find('input:selected').attr('rel'));
-		var id_  = this.value;
-		console.log(id_);
+		$('#cobro').on('click',function(){			 
+		var op_id = $('#datos').find('td').html();   
+		//var cutomerId = $(this).find("td:first").html();
+		//var id = $(this).find('option:checked').val(); 
+		//console.log(id_);
 		$.ajax({ 
-		        data: {'id_': $(this).val()},
+		        data: {'id_': op_id},
 		        type: "GET",                
 		        url: '/ajax/reg_pago/',		             
 		        success: function(data){
-		            var html = "";    
-		            console.log(data);    
+		            var html = "";  		               
 		        }
 		    });
-		}
- 
+		});
+
+
+
 		$('.chcktbl').click(function(){
 		//alert($(this).val()); // el id  del la  tabla de cobros
-		recalculate();		  	 	 	  	 
-			 //if($('.chcktbl').is(':checked')){
-			 //	  alert("lo puso");
-			//	}
-			//else {
-			//		    alert("lo quito");
-			//		}
-			});
-
+        recalculate();	
+		});
 
 		 function recalculate(){
 		 var sum = 0;		 		   
