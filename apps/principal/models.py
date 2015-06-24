@@ -77,6 +77,10 @@ class Calificacion(TimeStampModel):
 	#calificacion = models.DecimalField(max_digits=2, decimal_places=2,default=0)
 	calificacion = models.IntegerField()
 
+	def __unicode__(self):
+		return self.alumno
+		
+
 #asigna materias por grupo	 
 class MateriaxGrupo(TimeStampModel):
 	nivel = models.ForeignKey('configuracion.Nivel')

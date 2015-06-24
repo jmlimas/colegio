@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse,HttpResponseRedirect,Http404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -88,7 +87,6 @@ class AddAlumnoCreateView(LoginRequiredMixin,CreateView):
 		url = self.success_url % self.object.grupo.pk 
 		return  url  # aqui le paso  el  /listgpo/5 al success_url 
 
-
 	def post(self, request, *args, **kwargs):
 		post = super(AddAlumnoCreateView,self).post(request, *args, **kwargs)
 		self.GrupoSave(request.POST['grupo'])	# aqui le paso el  grupo al que le  va a sumar 1	 
@@ -106,8 +104,7 @@ class AddAlumnoCreateView(LoginRequiredMixin,CreateView):
 		conceptos = ConceptoCobro.objects.filter(nivel = alumno.nivel)
 		for item in conceptos:
 			cobranza = Cobranza(alumno=alumno,concepto=item)
- 			cobranza.save() 
-
+ 			cobranza.save()
  	
 class UpdateAlumno(LoginRequiredMixin,UpdateView):
 	form_class = AddAlumnoForm
@@ -213,10 +210,10 @@ def mostrar_grupos(request):
 	if request.is_ajax():		
 		id_nivel = request.GET['id_nivel']
 		grupos = Grupo.objects.filter(nivel=id_nivel)
-		grupos_json = serializers.serialize('json', grupos)
-		return HttpResponse(grupos_json, content_type='application/json'); 
-	else:
-		raise Http404
+	grupos_json = serializers.serialize('json', grupos)
+	return HttpResponse(grupos_json, content_type='application/json'); 
+	#else:
+	#	raise Http404
 	
 
 def mostrar_alumnos22(request):	

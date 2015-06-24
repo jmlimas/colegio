@@ -6,8 +6,8 @@ from .views import ListMateriaView,UpdateMat,ListGpopk,ListMatxGpoNivel,addMatxG
 from django.contrib.auth.decorators import login_required
  
 
-#urlpatterns = patterns('apps.principal.views',
-urlpatterns = patterns('',
+urlpatterns = patterns('apps.principal.views',
+#urlpatterns = patterns('',
 	url(r'^$',IndexView.as_view(),name = 'index'),	  
 	url(r'^my_login/$',MyLogin.as_view(),name='my_login'),
 	url(r'^cerrar/$',login_required(Cerrar.as_view()),name='cerrar'),

@@ -61,7 +61,7 @@
 		
 		$("#id_nivel").on('change', mostrarGrupo);
 		function mostrarGrupo() {
-			  //alert($(this).val());
+			//  alert($(this).val());
 			$.ajax({
 				data: {'id_nivel': $(this).val()},
 				type: "GET",
@@ -110,7 +110,7 @@
                                 url: '/ajax/asis/',
                                 success: function(data) {
                                     var html = "";    
-                                    console.log(data);    
+                                    //console.log(data);    
                                 }
                             });
                         }

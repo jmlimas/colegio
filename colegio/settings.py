@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'apps.maestro',
     'apps.trasporte',
     'djrill',    
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,3 +111,5 @@ STATIC_ROOT = 'staticfiles'
 EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
 MANDRILL_API_KEY ='WeikEnaOZGN5itibGAs_0g'
  
+
+#AUTH_USER_MODEL = 'users.User'

@@ -65,34 +65,32 @@ class AddGrupoCreateView(LoginRequiredMixin,GroupRequiredMixin,CreateView):
 	#	grupo.save()
 
  
-class ListGpos(ListView):
-	context_object_name = 'niveles'
+class ListGpos(ListView):	
+	context_object_name = 'niveles'	
 	model = Nivel
 	template_name = 'configuracion/grupo_list.html'
 	paginate_by = 6
 
+
 def Lista_GruposAjax(request): # ajax de materias por nivel ver 1.1
-	if request.is_ajax():
-		mats = Grupo.objects.filter(nivel = request.GET['id_nivel'])		
-		secciones=[]
-		for indice,elemento in enumerate(mats):
-			secciones.append({
-				'pk':mats[indice].pk,
-				'nombre':mats[indice].nombre,
-				'nivel':mats[indice].nivel.Nombre,
-				'grado':mats[indice].grado.nombre,
-				'seccion':mats[indice].seccion.nombre,
-				'maximo':mats[indice].maximo,
-				'numalumnos':mats[indice].numalumnos,
-				'cupo':mats[indice].cupo(),
-				})				
-		data = json.dumps(secciones,cls=DjangoJSONEncoder)
-		return HttpResponse(data, mimetype="application/json")
-	else:
-		raise Http404
+	mats = Grupo.objects.filter(nivel = request.GET['id_nivel'])
+	secciones=[]
+	for indice,elemento in enumerate(mats):
+		secciones.append({
+			'pk':mats[indice].pk,
+			'nombre':mats[indice].nombre,
+			'nivel':mats[indice].nivel.Nombre,
+			'grado':mats[indice].grado.nombre,
+			'seccion':mats[indice].seccion.nombre,
+			'maximo':mats[indice].maximo,
+			'numalumnos':mats[indice].numalumnos,
+			'cupo':mats[indice].cupo(),
+			})				
+	data = json.dumps(secciones,cls=DjangoJSONEncoder)
+	return HttpResponse(data, mimetype="application/json")
+  
 
-
-def Lista_GruposAjax2(request): #
+def Lista_GruposAjax2(request):	
 	mats = Grupo.objects.filter(nivel = request.GET['id_nivel'])
 	mats_json = serializers.serialize('json',mats)
 	#mats_json = serializers.serialize('json', [x.mats for x in mats])

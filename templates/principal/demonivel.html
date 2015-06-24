@@ -58,8 +58,7 @@
 				url: '/ajax/listgpo/',
 				success: function(data) {
 					var html = "";	
-					//console.log(data);
-
+					
 					for (var i=0; i < data.length; i++) {
 						html += '<div>'+ data[i].alumno +'  '+
 						data[i].grupo+' '+

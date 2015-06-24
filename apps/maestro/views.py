@@ -7,7 +7,7 @@ from apps.principal.models import Alumno,Calificacion,Mes, Materia
 from apps.configuracion.models import Nivel
 
 from django.core import serializers
-from datetime import datetime 
+from datetime import datetime
 
 # Create your views here.
 
@@ -20,8 +20,9 @@ class AddAsistenciasView(ListView):
 def asistencias(request):        
     niveles = Nivel.objects.all()
     alumnos = Alumno.objects.filter(grupo=2)
-    ctx = {'alumnos': alumnos,'niveles':niveles}    
+    ctx = {'alumnos': alumnos,'niveles':niveles} 
     return render(request,'maestro/asistencia3_form.html',ctx)
+
 
 def asistencias2(request):
     estudiantes = Asistencia.objects.all()
@@ -58,6 +59,14 @@ def ajax_cargagrupo(request):
 class ListaAsistencia(ListView):
 	context_object_name = 'asistencia'
 	model = Asistencia
+
+        def get_queryset(self):
+            today = datetime.now()
+            month = today.month
+            print month
+            return super(ListaAsistencia,self).get_queryset().filter(fecha__month=month)
+ 
+ 
  
 
 class ListaCalificaciones(ListView):

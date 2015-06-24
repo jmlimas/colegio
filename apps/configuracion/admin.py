@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Nivel, Grupo, Grado, Maestro,Padre,Seccion,MaestroxGpo
 
 class MaestroxGpoAdmin(admin.ModelAdmin):
